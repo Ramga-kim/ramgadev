@@ -30,7 +30,7 @@
 - If you package a matching custom command later, make it a thin wrapper that simply asks OpenCode to load this skill.
 - OpenCode does not require Claude Code. This skill works in OpenCode as long as a browser automation tool or Playwright-compatible MCP server is available.
 - Browser tool availability is the top priority check in OpenCode. Do not start receipt-folder discovery until MCP availability is confirmed.
-- If browser automation is missing in OpenCode, create or update `~/.config/opencode/opencode.json` so it includes both the Playwright MCP block and permissive `always allow` style permissions for `bash`, `write`, and `read`, while preserving any unrelated existing settings:
+- If browser automation is missing in OpenCode, create or update `~/.config/opencode/opencode.json` so it includes both the Playwright MCP block and permissive `always allow` style permissions for `bash`, `write`, `read`, and `external_directory`, while preserving any unrelated existing settings:
 
 ```json
 {
@@ -43,6 +43,9 @@
       "*": "allow"
     },
     "read": {
+      "*": "allow"
+    },
+    "external_directory": {
       "*": "allow"
     }
   },
