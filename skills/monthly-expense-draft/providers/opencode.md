@@ -13,20 +13,23 @@
 
 ## Recommended orchestration
 
-1. Read `workflow.md`, config, and this adapter.
-2. Resolve the target folder and normalize receipt filenames.
-3. If OpenCode subtasks are available, fan out per-receipt OCR and optionally warm the browser in parallel; otherwise stay serial.
-4. Merge sorted receipt JSON.
-5. Create the attachment zip.
-6. Fill the Goworks form and upload the zip through the available browser or MCP tools.
-7. Return the verification state and pause for user review and submit.
+1. Before anything else, confirm that browser automation is available in the current OpenCode session.
+2. If browser tools are missing, create or update `~/.config/opencode/opencode.json` with the Playwright MCP and permission block shown below.
+3. Re-check the available tools, and only continue once browser automation is visible.
+4. Read `workflow.md`, config, and this adapter.
+5. Resolve the target folder and normalize receipt filenames.
+6. If OpenCode subtasks are available, fan out per-receipt OCR and optionally warm the browser in parallel; otherwise stay serial.
+7. Merge sorted receipt JSON.
+8. Create the attachment zip.
+9. Fill the Goworks form and upload the zip through the available browser or MCP tools.
+10. Return the verification state and pause for user review and submit.
 
 ## OpenCode-specific notes
 
 - Keep provider or model overrides in OpenCode config or `skill-config.yaml`, not in `SKILL.md`.
 - If you package a matching custom command later, make it a thin wrapper that simply asks OpenCode to load this skill.
 - OpenCode does not require Claude Code. This skill works in OpenCode as long as a browser automation tool or Playwright-compatible MCP server is available.
-- Before starting the form flow, confirm that browser tools are actually exposed in the current session.
+- Browser tool availability is the top priority check in OpenCode. Do not start receipt-folder discovery until MCP availability is confirmed.
 - If browser automation is missing in OpenCode, create or update `~/.config/opencode/opencode.json` so it includes both the Playwright MCP block and permissive `always allow` style permissions for `bash`, `write`, and `read`, while preserving any unrelated existing settings:
 
 ```json
