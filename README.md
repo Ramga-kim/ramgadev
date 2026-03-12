@@ -20,7 +20,15 @@ npm config set //npm.pkg.github.com/:_authToken <PAT>
 ### 2. 스킬 설치
 
 ```bash
-npx skills add nada-dl/nada-skills --agent opencode --yes
+npx skills add Ramga-kim/ramgadev --agent opencode --yes
+```
+
+필요하면 다른 에이전트에서도 같은 저장소 주소를 사용할 수 있다.
+
+```bash
+npx skills add Ramga-kim/ramgadev --agent claude-code --yes
+npx skills add Ramga-kim/ramgadev --agent gemini-cli --yes
+npx skills add Ramga-kim/ramgadev --agent gpt-codex --yes
 ```
 
 ## Repository layout
@@ -32,6 +40,11 @@ nada-skills/
    `- monthly-expense-draft/
       |- SKILL.md
       |- README.md
+      |- workflow.md
+      |- skill.md
+      |- skill-config.example.yaml
+      |- providers/
+      |- agents/
       `- reference/
          `- goworks-upload.md
 ```

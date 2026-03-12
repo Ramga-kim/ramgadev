@@ -2,6 +2,12 @@
 name: monthly-expense-draft
 description: 월간 경비청구 기안. Goworks 경비청구서 작성, 전자결재 경비 기안 요청 시 사용.
 allowed-tools: mcp__plugin_playwright_playwright__browser_navigate, mcp__plugin_playwright_playwright__browser_snapshot, mcp__plugin_playwright_playwright__browser_click, mcp__plugin_playwright_playwright__browser_fill_form, mcp__plugin_playwright_playwright__browser_wait_for, mcp__plugin_playwright_playwright__browser_select_option, mcp__plugin_playwright_playwright__browser_take_screenshot, mcp__plugin_playwright_playwright__browser_run_code, mcp__plugin_playwright_playwright__browser_file_upload, mcp__plugin_playwright_playwright__browser_network_requests, mcp__plugin_playwright_playwright__browser_tabs
+compatibility: claude-code, gemini-cli, opencode, gpt-codex
+metadata:
+  category: finance-ops
+  requires_browser_automation: "true"
+  requires_receipt_images: "true"
+disable-model-invocation: true
 ---
 
 # Goworks 경비청구서 기안

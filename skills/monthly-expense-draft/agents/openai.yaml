@@ -1,0 +1,7 @@
+interface:
+  display_name: "Monthly Expense Draft"
+  short_description: "Prepare the previous month's personal expense draft from receipts and upload the draft package to Goworks/NADA."
+  default_prompt: "Use the monthly-expense-draft skill to prepare the previous month's personal expense draft."
+
+policy:
+  allow_implicit_invocation: false
