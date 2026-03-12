@@ -91,6 +91,7 @@ disable-model-invocation: true
 서브에이전트 지시사항:
 
 > 주어진 폴더의 영수증 이미지(`jpg`, `jpeg`, `png`)를 가공하라.
+> zip, 7z, rar, pdf, xlsx 같은 비이미지 파일은 절대 열거나 압축 해제하지 말고 완전히 무시하라.
 >
 > Step 1. 파일명 정규화
 > 1. 이미 `yyyyMMdd` 또는 `yyyyMMdd_NN` 형식인 파일은 건너뛴다.
