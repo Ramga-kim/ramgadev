@@ -23,6 +23,7 @@ disable-model-invocation: true
   - `providers/claude-code.md`: Claude Code 플러그인 또는 MCP 연결
   - `providers/gemini-cli.md`: Gemini CLI MCP 연결
   - `providers/gpt-codex.md`: Codex MCP 연결
+- OpenCode 환경이라면 브라우저 도구가 없을 때 `~/.config/opencode/opencode.json`에 `mcp.playwright` 설정을 추가하고, 같은 세션에서 도구를 다시 확인한 뒤 계속 진행한다.
 - 어떤 환경이든 브라우저 자동화 도구가 준비되지 않으면 폼 자동 입력 단계로 진행하지 말고, 필요한 MCP 또는 Playwright 설정이 없다고 사용자에게 명확히 안내한다.
 
 ## First read
