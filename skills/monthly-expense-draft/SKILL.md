@@ -17,8 +17,20 @@ disable-model-invocation: true
 ## Preconditions
 
 - 이 스킬은 Playwright 브라우저 도구를 사용한다.
-- `mcp__plugin_playwright_playwright__browser_navigate` 같은 도구가 보이지 않으면 Playwright 플러그인이 설치되지 않은 것이다.
-- 이 경우 사용자에게 다음을 안내한다: `Claude Code`에서 `/plugins` 명령으로 `playwright@claude-plugins-official` 플러그인을 설치 및 활성화해주세요.
+- 브라우저 자동화 도구가 보이지 않으면 현재 에이전트 환경에 Playwright 또는 브라우저 MCP가 연결되지 않은 상태다.
+- 이 경우 현재 환경에 맞는 설정 문서를 먼저 확인한다.
+  - `providers/opencode.md`: OpenCode에서 MCP 또는 브라우저 도구 연결
+  - `providers/claude-code.md`: Claude Code 플러그인 또는 MCP 연결
+  - `providers/gemini-cli.md`: Gemini CLI MCP 연결
+  - `providers/gpt-codex.md`: Codex MCP 연결
+- 어떤 환경이든 브라우저 자동화 도구가 준비되지 않으면 폼 자동 입력 단계로 진행하지 말고, 필요한 MCP 또는 Playwright 설정이 없다고 사용자에게 명확히 안내한다.
+
+## First read
+
+1. `workflow.md`를 읽고 벤더 중립 업무 흐름을 확인한다.
+2. `skill-config.yaml`이 있으면 읽고, 없으면 `skill-config.example.yaml`을 기준으로 기본값을 해석한다.
+3. 현재 실행 환경에 맞는 provider 문서를 읽는다.
+4. provider 문서와 현재 도구 목록이 일치하지 않으면, 실제로 사용 가능한 도구 기준으로만 진행한다.
 
 ## Inputs
 

@@ -14,6 +14,7 @@ Goworks 월간 경비청구서 기안을 자동화하는 workflow skill.
 - 브라우저 자동화가 가능한 에이전트 환경
 - Goworks 경비청구서 접근 권한
 - 월별로 정리된 로컬 영수증 폴더
+- OpenCode, Claude Code, Gemini CLI, GPT Codex 중 어느 환경이든 가능하지만, 해당 환경에 브라우저 도구 또는 Playwright MCP가 연결되어 있어야 한다
 
 ## Safety boundaries
 

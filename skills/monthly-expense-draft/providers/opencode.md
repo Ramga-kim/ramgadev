@@ -26,3 +26,5 @@
 - Keep provider or model overrides in OpenCode config or `skill-config.yaml`, not in `SKILL.md`.
 - If you package a matching custom command later, make it a thin wrapper that simply asks OpenCode to load this skill.
 - If the active agent lacks browser automation, stop and report the missing MCP or browser capability.
+- OpenCode does not require Claude Code. This skill works in OpenCode as long as a browser automation tool or Playwright-compatible MCP server is available.
+- Before starting the form flow, confirm that browser tools are actually exposed in the current session. If not, inspect OpenCode MCP setup first rather than sending the user to Claude-specific plugin instructions.
