@@ -4,7 +4,7 @@
 version: 1
 
 business:
-  receipt_root: 'D:\_User\_Desktop\_Document And Project\_영수증'
+  receipt_root: 'C:\Users\<USER>\Desktop\영수증'
   drafter_name: '김가람'
   target_month_offset: -1
   title_template: '[경비청구서] {month}월 개인경비'

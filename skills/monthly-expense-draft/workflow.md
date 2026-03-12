@@ -42,11 +42,14 @@
 
 ### 루트 경로 및 컨벤션
 
-- 실제 경로 : `D:\_User\_Desktop\_Document And Project\_영수증`
+- 기본 예시 경로 : `C:\Users\<USER>\Desktop\영수증`
 - 폴더 컨벤션: `{루트}/{연도}/{N}월 경비청구/`
-  - 예: `D:\_User\_Desktop\_Document And Project\_영수증\2026\2월 경비청구\`
+  - 예: `C:\Users\<USER>\Desktop\영수증\2026\2월 경비청구\`
 - `skill-config.yaml`에 `business.receipt_root`가 있으면 우선 사용
-- 루트 경로가 비어 있으면 사용자에게 1회 질문하고, 영속 저장이 필요할 때만 `skill-config.yaml`에 기록
+- 루트 경로가 비어 있으면 사용자에게 1회 질문하고, 받은 값을 현재 실행에 즉시 사용한다.
+- `skill-config.yaml`이 있으면 `business.receipt_root`에 저장해 다음 실행에서도 재사용한다.
+- `skill-config.yaml`이 없고 로컬 파일 저장이 가능하면 새로 만들거나 업데이트해서 같은 경로를 기억한다.
+- 저장이 불가능한 환경이면 현재 실행 동안 메모리에 유지하고, 같은 실행에서는 다시 묻지 않는다.
 
 ### 대상 월 결정
 
