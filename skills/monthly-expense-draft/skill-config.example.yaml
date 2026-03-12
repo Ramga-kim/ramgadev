@@ -1,0 +1,43 @@
+# Copy this file to `skill-config.yaml` and edit only the fields you want to override.
+# Keep secrets blank unless the user explicitly wants local credential storage.
+
+version: 1
+
+business:
+  receipt_root: 'D:\_User\_Desktop\_Document And Project\_영수증'
+  drafter_name: '김가람'
+  target_month_offset: -1
+  title_template: '[경비청구서] {month}월 개인경비'
+  attachment_name_template: '{month}월_경비청구서_{drafter_name}.zip'
+
+goworks:
+  form_url: 'https://www.goworks.co.kr/Approval/NewForm?templateid=2679'
+  manual_login: true
+  email: ''
+  password: ''
+
+execution:
+  prefer_parallel_ocr: true
+  prefer_parallel_browser_prewarm: true
+  roles:
+    orchestrator: 'high-reasoning'
+    receipt_worker: 'fast-balanced'
+    browser_worker: 'tool-stable'
+
+providers:
+  claude-code:
+    orchestrator_model: ''
+    receipt_worker_model: ''
+    browser_worker_model: ''
+  gemini-cli:
+    orchestrator_model: ''
+    receipt_worker_model: ''
+    browser_worker_model: ''
+  opencode:
+    orchestrator_model: ''
+    receipt_worker_model: ''
+    browser_worker_model: ''
+  gpt-codex:
+    orchestrator_model: ''
+    receipt_worker_model: ''
+    browser_worker_model: ''
