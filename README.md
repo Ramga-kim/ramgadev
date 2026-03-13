@@ -41,7 +41,6 @@ nada-skills/
       |- SKILL.md
       |- README.md
       |- workflow.md
-      |- skill.md
       |- skill-config.example.yaml
       `- reference/
          `- goworks-upload.md
