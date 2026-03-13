@@ -21,16 +21,16 @@
 - header row: index `0`
 - data rows: index `1..N`
 - summary row: last row
-- data row cell order is fixed:
-  - `cells[0]`: checkbox
-  - `cells[1]`: date input
-  - `cells[2]`: amount input
-  - `cells[3]`: vendor input
-  - `cells[4]`: business content input
-  - `cells[5]`: usage select
-  - `cells[6]`: project input
-  - `cells[7]`: division select
-  - `cells[8]`: expense type select
+- data row cell order is fixed and matches the Korean column labels in the form:
+  - `cells[0]`: 체크박스
+  - `cells[1]`: `사용일`
+  - `cells[2]`: `금액`
+  - `cells[3]`: `상호`
+  - `cells[4]`: `업무내용`
+  - `cells[5]`: `용도`
+  - `cells[6]`: `프로젝트`
+  - `cells[7]`: `사업부`
+  - `cells[8]`: `지출구분`
 
 ## Known select values
 
