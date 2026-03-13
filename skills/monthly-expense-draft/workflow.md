@@ -62,6 +62,8 @@
 - OCR 및 파일명 정규화 대상은 이미지 파일(`jpg`, `jpeg`, `png`)만이다.
 - `zip`, `7z`, `rar`, `pdf`, `xlsx` 등 비이미지 파일은 무시한다.
 - Windows 환경에서는 파일 확인, 리네임, 복사, 압축 작업에 PowerShell을 우선 사용한다.
+- 한글 경로 처리 시 인코딩 주의가 필요하다. 벤더별 허용 패턴은 각 provider 문서를 따른다.
+- Node.js, Python 등 Windows 기본 제공이 아닌 런타임에 의존하지 않는다.
 - 이미 `yyyyMMdd` 또는 `yyyyMMdd_NN` 형식인 파일은 유지한다.
 - 그 외 파일은 실제 결제 날짜를 읽어 `yyyyMMdd.jpg` 형식으로 정규화한다.
 - 동일 날짜 복수 파일은 `yyyyMMdd_01.jpg`, `yyyyMMdd_02.jpg`처럼 접미사를 붙인다.
