@@ -53,5 +53,4 @@ Goworks 월간 경비청구서 기안을 자동화하는 workflow skill.
 - `skill.md`: 구형 호환용 엔트리
 - `workflow.md`: 공통 업무 흐름
 - `skill-config.example.yaml`: 로컬 설정 예시
-- `agents/openai.yaml`: Codex 계열 설정
 - `reference/goworks-upload.md`: Goworks DOM 및 업로드 참고 메모
