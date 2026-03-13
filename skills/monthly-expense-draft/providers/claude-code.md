@@ -37,7 +37,7 @@ bash heredoc -> powershell -Command "$var = ..."
 
 ### Prefer
 
-1. 인라인 `powershell -NoProfile -Command` + `chcp 65001`
+1. 인라인 `powershell -NoProfile -Command` + `chcp 65001` with a single-quoted outer command when bash interpolation could touch `$`
 2. 필요 시 `-EncodedCommand` 또는 BOM 재인코딩 후 실행
 3. 한글 경로는 환경변수로 전달하고 PowerShell 내부에서 `$env:`로 참조
 

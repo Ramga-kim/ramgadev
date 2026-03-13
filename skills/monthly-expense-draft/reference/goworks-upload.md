@@ -17,7 +17,7 @@
 
 ## Bulk fill pattern
 
-- add rows first
+- add rows first, preferably with browser-native click actions
 - set text inputs in a single browser-side evaluation
 - use Playwright `selectOption` for select fields
 - trigger blur on amount inputs so totals recalculate
@@ -35,6 +35,7 @@
 - attachment filename is visible in the form
 - attachment size is visible in the form
 - `insertFileList` contains `File` instances with `hasFile: true`
+- typical structure is `{ file: File, ... }`, so validation should read `item.file.name` and `item.file.size`
 - prefer targeted field checks or `page.evaluate` over full-page snapshots when validating filled rows or attachment state
 
 ## Efficiency notes
