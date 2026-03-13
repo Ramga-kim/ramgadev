@@ -59,9 +59,11 @@
 
 ### 파일 처리 규칙
 
+- 이 워크플로우는 Windows 환경만 지원한다.
 - 입력 대상은 이미지 파일(`jpg`, `jpeg`, `png`)과 PDF 파일(`pdf`)이다.
 - `zip`, `7z`, `rar`, `xlsx` 등 비대상 파일은 무시한다.
 - Windows 환경에서는 파일 확인, 리네임, 복사, 압축 작업에 PowerShell을 우선 사용한다.
+- `ls`, `find`, `mv`, `cp` 등 Unix식 파일 명령을 기본 전략으로 사용하지 않는다. 파일 탐색은 Glob 또는 PowerShell, 파일 조작은 PowerShell로만 처리한다.
 - 한글 경로 처리 시 인코딩 주의가 필요하다. 벤더별 허용 패턴은 각 provider 문서를 따른다.
 - Node.js, Python 등 Windows 기본 제공이 아닌 런타임에 의존하지 않는다.
 - 이미 `yyyyMMdd` 또는 `yyyyMMdd_NN` 형식인 파일은 유지한다.
@@ -102,6 +104,7 @@
 - 로그인 필요 시 사용자에게 수동 로그인 안내
 - 저장된 계정 정보는 `skill-config.yaml`의 `goworks.email`, `goworks.password`에서만 읽는다.
 - 값이 비어 있거나 저장을 원하지 않으면 수동 로그인으로 진행한다.
+- SSO 환경에서는 navigate 직후 바로 클릭하지 말고, 현재 URL 또는 화면 상태를 먼저 확인한 뒤 로그인 클릭 필요 여부를 판단한다.
 
 ### 제목 규칙
 
@@ -115,6 +118,7 @@
 - Goworks 테이블 입력은 다음 고정 전략을 반드시 따른다: 배치 행 추가 -> 배치 텍스트 입력 -> 배치 select 처리 -> blur 또는 경량 검증.
 - `browser_select_option` 개별 반복은 fallback일 뿐이며, 기본 전략으로 사용하지 않는다.
 - select 필드는 먼저 배치 처리 전략을 시도하고, Goworks 이벤트 반영이 실제로 실패한 경우에만 `browser_select_option` 개별 호출로 내려간다.
+- 단일 필드 제목 입력이나 단순 텍스트 입력은 `browser_fill_form` 또는 직접 ref 기반 입력을 우선 사용하고, 복잡한 locator를 새로 구성하는 `browser_run_code`를 기본 전략으로 쓰지 않는다.
 
 ---
 
@@ -129,6 +133,7 @@
 - 업로드 전에 Playwright 허용 경로 안의 임시 경로를 먼저 준비하고, 첫 업로드부터 그 경로만 사용한다.
 - 실패 후 다른 경로를 다시 시도하지 말고, 허용 경로 여부를 먼저 확인한다.
 - zip 생성 직후 allowed root 내부 경로로 복사 또는 생성해서, 업로드 단계에서 경로 전환이 발생하지 않게 한다.
+- staging 경로는 디렉토리 자체가 아니라 파일 경로까지 포함한 full path로 다루며, staging 폴더 자체를 삭제 대상으로 취급하지 않는다.
 
 - 업로드 검증은 첨부 목록 표시와 `insertFileList`의 `File` 존재 여부로 확인한다.
 - 임시 zip 파일은 상신 후 첨부 확인 전까지 삭제하지 않는다.

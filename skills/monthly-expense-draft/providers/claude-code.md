@@ -23,6 +23,8 @@
 6. Fill the Goworks form with batched row-add, batched text fill, and batched select handling as the default strategy; use per-field fallbacks only after a concrete failure.
 7. Hand off to the user for manual review and submit.
 
+- Windows 환경에서는 PowerShell과 Claude 도구를 사용하고, Unix식 파일 명령을 시도하지 않는다.
+
 ## PowerShell encoding on Windows
 
 Claude Code의 Write 도구는 UTF-8 without BOM으로 파일을 저장한다.
