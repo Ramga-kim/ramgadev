@@ -39,6 +39,9 @@
 
 ## Attachment behavior
 
+- final attachment artifact is a zip file that contains receipt PDFs
+- image receipts should be converted to per-receipt PDFs before packaging
+- source PDFs stay as PDFs; a single PDF may represent one or multiple receipts at extraction time
 - Goworks stores selected files in client-side `insertFileList`
 - actual upload occurs only after the approval submit flow calls `PerformUpload`
 - absence of an immediate network upload request after file selection is normal

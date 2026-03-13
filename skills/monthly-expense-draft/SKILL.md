@@ -6,12 +6,12 @@ compatibility: claude-code, gemini-cli, opencode, gpt-codex
 metadata:
   category: finance-ops
   requires_browser_automation: "true"
-  requires_receipt_images: "true"
+  requires_receipt_files: "true"
 ---
 
 # Goworks 경비청구서 기안
 
-영수증 이미지에서 데이터를 추출하고 Goworks 경비청구서 기안 폼을 자동으로 채운다.
+영수증 파일에서 데이터를 추출하고 Goworks 경비청구서 기안 폼을 자동으로 채운다.
 
 ## Preconditions
 
@@ -49,17 +49,19 @@ metadata:
 1. `receipt_root`가 없으면 한 번만 질문하고, 가능하면 `skill-config.yaml`에 저장한다.
 2. 브라우저 워커는 답변을 기다리지 말고 먼저 Goworks 폼 접속과 로그인 상태 확인을 진행한다.
 3. 전월 기준 대상 폴더를 정하고, 없으면 생성한다.
-4. 영수증 처리는 이미지 파일(`jpg`, `jpeg`, `png`)만 대상으로 한다. `zip`, `7z`, `rar`, `pdf`, `xlsx`는 무시한다.
-5. 영수증 OCR과 이미지 읽기는 메인 세션이 직접 처리하지 말고 반드시 별도 워커 또는 서브에이전트에 위임한다.
-6. OCR 결과는 `{ date, amount, vendor, category }` 형식의 날짜 오름차순 JSON 배열로 받는다.
+4. 영수증 입력은 이미지 파일(`jpg`, `jpeg`, `png`)과 PDF 파일(`pdf`)을 대상으로 한다. `zip`, `7z`, `rar`, `xlsx`는 무시한다.
+5. PDF 하나 안에 여러 영수증이 있을 수 있으므로, 파일 단위가 아니라 영수증 건 단위로 추출한다.
+6. 영수증 추출과 파일 읽기는 메인 세션이 직접 처리하지 말고 반드시 별도 워커 또는 서브에이전트에 위임한다.
+7. 추출 결과는 `{ date, amount, vendor, category }` 형식의 날짜 오름차순 JSON 배열로 받는다.
 
 ### Phase 2: 폼 입력과 첨부
 
 1. 제목은 `[경비청구서] {전월}월 개인경비` 기본값을 사용한다.
 2. 행 추가와 값 입력은 가능한 한 `browser_run_code` 한 번으로 일괄 처리한다.
 3. 계정과목은 기본 `야근주말식대`, 지출구분은 기본 `개인`을 사용한다.
-4. 영수증 이미지만 zip으로 압축해 첨부한다.
-5. 업로드 확인과 DOM 세부 구조는 `reference/goworks-upload.md`를 따른다.
+4. 이미지 영수증은 건별 PDF로 변환하고, 원래 PDF인 영수증은 PDF 그대로 사용한다.
+5. 최종 첨부는 PDF 파일들을 압축한 zip으로 만든다.
+6. 업로드 확인과 DOM 세부 구조는 `reference/goworks-upload.md`를 따른다.
 
 ## Validation
 
