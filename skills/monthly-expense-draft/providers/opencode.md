@@ -19,7 +19,7 @@
 4. Read `workflow.md`, config, and this adapter.
 5. Start browser prewarm immediately: open the Goworks form, wait for load, and confirm login state even if the receipt root path is still unknown.
 6. In parallel, resolve the target receipt folder and normalize filenames.
-7. If OpenCode subtasks are available, fan out per-receipt OCR while the browser worker keeps the form ready; otherwise stay serial.
+7. Receipt OCR should be delegated to subtasks or a receipt worker by default while the browser worker keeps the form ready.
 8. Merge sorted receipt JSON.
 9. Create the attachment zip and copy it into an allowed upload path before the first upload attempt.
 10. Fill the Goworks form and upload the zip through the already prepared browser or MCP tools, using lightweight checks instead of repeated full snapshots where possible.

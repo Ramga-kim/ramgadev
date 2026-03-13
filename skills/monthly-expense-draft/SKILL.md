@@ -50,7 +50,8 @@ metadata:
 2. 브라우저 워커는 답변을 기다리지 말고 먼저 Goworks 폼 접속과 로그인 상태 확인을 진행한다.
 3. 전월 기준 대상 폴더를 정하고, 없으면 생성한다.
 4. 영수증 처리는 이미지 파일(`jpg`, `jpeg`, `png`)만 대상으로 한다. `zip`, `7z`, `rar`, `pdf`, `xlsx`는 무시한다.
-5. OCR은 별도 워커로 돌리고, 결과는 `{ date, amount, vendor, category }` 형식의 날짜 오름차순 JSON 배열로 받는다.
+5. 영수증 OCR과 이미지 읽기는 메인 세션이 직접 처리하지 말고 반드시 별도 워커 또는 서브에이전트에 위임한다.
+6. OCR 결과는 `{ date, amount, vendor, category }` 형식의 날짜 오름차순 JSON 배열로 받는다.
 
 ### Phase 2: 폼 입력과 첨부
 

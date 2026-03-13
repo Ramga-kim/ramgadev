@@ -18,7 +18,7 @@
 1. Read `workflow.md`, config, and this adapter.
 2. Resolve target month and receipt folder in the primary session.
 3. Normalize filenames in the primary session.
-4. If subagents are available, parallelize per-receipt OCR and optionally pre-load the browser in parallel; otherwise run the same steps serially.
+4. Receipt OCR should be delegated to subagents by default, while the primary session pre-loads the browser in parallel.
 5. Create the zip in the primary session and copy it into an allowed upload path before the first upload attempt.
 6. Fill the Goworks form, prefer targeted verification over repeated full-page snapshots, then capture only the final user-facing confirmation snapshot.
 7. Hand off to the user for manual review and submit.
