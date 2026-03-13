@@ -140,7 +140,7 @@ DOM/업로드 세부는 `goworks-upload.md`를 참조한다.
 - 입력이 이미 PDF여도 최종 첨부용 PDF 파일명은 반드시 날짜 기준으로 정규화한다.
 - 최종 첨부 대상은 `yyyyMMdd.pdf` 또는 `yyyyMMdd_NN.pdf` 형식으로 정규화된 PDF 파일들만 포함한 zip이다.
 - 파일명과 생성 명령은 `skill-config.yaml` 기본값 또는 로컬 설정을 따른다.
-- `skill-config.yaml`의 `business.upload_staging_path`를 allowed root 기본값으로 사용한다.
+- `business.upload_staging_path`가 있으면 그 경로를 사용하고, 없으면 현재 실행 환경의 allowed root 안에서 staging 경로를 결정한다.
 - 원본 zip은 대상 폴더에 보존한다.
 - 업로드 전에 Playwright 허용 경로 안의 임시 경로를 먼저 준비하고, 첫 업로드부터 그 경로만 사용한다.
 - 실패 후 다른 경로를 다시 시도하지 말고, 허용 경로 여부를 먼저 확인한다.
@@ -184,5 +184,5 @@ DOM/업로드 세부는 `goworks-upload.md`를 참조한다.
 - snapshot의 `ref` 값은 Playwright 도구용 참조일 뿐이며, `browser_run_code` 내부에서 DOM selector로 사용하지 않는다.
 - 제목, 합계, 입력 행 수처럼 다음 단계 진행에 필요한 조건이 충족되면 추가 탐색이나 재판단 없이 즉시 다음 tool call을 실행한다.
 - 같은 세션에서 이미 성공한 입력 전략이 있으면 다른 selector 전략이나 구조 탐색을 다시 하지 않는다.
-- 첨부 단계에서는 `business.upload_staging_path`만 사용하며, 다른 경로를 다시 비교하거나 탐색하지 않는다.
+- `business.upload_staging_path`가 설정되어 있으면 그 값만 사용하고, 비어 있으면 현재 실행 환경의 allowed root 내부 경로만 사용한다.
 - modal state가 보이면 현재 modal을 먼저 해소하고, 그 modal을 처리하는 tool 외 다른 tool은 사용하지 않는다.
