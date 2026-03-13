@@ -9,6 +9,12 @@ Goworks 월간 경비청구서 기안을 자동화하는 workflow skill.
 - 모든 첨부용 영수증 파일을 `yyyyMMdd[_NN].pdf` 형식으로 정리한 뒤 PDF 묶음 zip을 만들어 첨부한다
 - 최종 제출 직전 상태까지만 자동화한다
 
+## Receipt extraction rule
+
+- 영수증 추출은 `receipt_worker`가 맡고, 메인 세션은 JSON 결과만 사용한다
+- 추출은 멀티모달 LLM 기반으로 수행하며 Python, Node.js, ImageMagick, Ghostscript 같은 별도 변환/파싱 탐색은 하지 않는다
+- 상호명은 원문 기준으로 보수 추출하고, 중복 영수증은 승인번호 우선 규칙으로 제거한다
+
 ## Prerequisites
 
 - 브라우저 자동화가 가능한 에이전트 환경
