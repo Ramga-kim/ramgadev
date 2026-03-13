@@ -17,18 +17,19 @@
 
 ## Bulk fill pattern
 
-- add rows first, preferably with browser-native click actions
+- add rows first in one batched browser action
 - set text inputs in a single browser-side evaluation
-- use Playwright `selectOption` for select fields
+- set select fields in a batched browser action first; fall back to Playwright `selectOption` only if Goworks change handling fails
 - trigger blur on amount inputs so totals recalculate
 - snapshot `ref` values are not DOM attributes; do not turn them into CSS selectors inside `page.evaluate` or `browser_run_code`
 
-## Preferred strategy
+## Mandatory strategy
 
-1. add rows in one batched browser action when the environment is stable; otherwise use browser-native clicks
+1. add rows in one batched browser action
 2. fill text inputs by row and cell index inside `#Table3`
-3. set select fields with batched browser logic only if Goworks change handling is confirmed; otherwise use Playwright-native select actions
+3. set select fields in one batched browser action when possible
 4. verify with targeted checks instead of rediscovering the DOM
+5. use per-field browser actions only as fallback after the batched strategy fails
 
 ## Avoid
 
@@ -36,6 +37,7 @@
 - turning snapshot refs into DOM selectors
 - using `select.value = '...'` as the primary strategy for Goworks select fields
 - re-inspecting the whole table structure on every retry once the verified pattern is known
+- using repeated per-row `browser_click` or repeated per-row `browser_select_option` as the default strategy
 
 ## Attachment behavior
 

@@ -20,7 +20,7 @@
 3. Normalize filenames in the primary session.
 4. Receipt OCR should be delegated to subagents by default, while the primary session pre-loads the browser in parallel.
 5. Create the zip in the primary session and copy it into an allowed upload path before the first upload attempt.
-6. Fill the Goworks form, prefer targeted verification over repeated full-page snapshots, then capture only the final user-facing confirmation snapshot.
+6. Fill the Goworks form with batched row-add, batched text fill, and batched select handling as the default strategy; use per-field fallbacks only after a concrete failure.
 7. Hand off to the user for manual review and submit.
 
 ## PowerShell encoding on Windows

@@ -22,7 +22,7 @@
 7. Receipt OCR should be delegated to subtasks or a receipt worker by default while the browser worker keeps the form ready.
 8. Merge sorted receipt JSON.
 9. Create the attachment zip and copy it into an allowed upload path before the first upload attempt.
-10. Fill the Goworks form and upload the zip through the already prepared browser or MCP tools, using lightweight checks instead of repeated full snapshots where possible.
+10. Fill the Goworks form and upload the zip through the already prepared browser or MCP tools, using batched browser interactions by default and per-field fallbacks only after a concrete failure.
 11. Return the verification state and pause for user review and submit.
 
 ## OpenCode-specific notes

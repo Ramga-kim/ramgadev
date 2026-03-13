@@ -107,13 +107,13 @@
 - 기본값: `[경비청구서] {N}월 개인경비` (예: `[경비청구서] 2월 개인경비`)
 - `skill-config.yaml`의 `business.title_template`가 있으면 그 값을 우선 사용
 
-- 행 추가는 가능하면 한 번의 `browser_run_code` 또는 브라우저 네이티브 루프로 묶어 처리하고, 값 입력도 일괄 처리한다.
+- 행 추가는 반드시 한 번의 배치 브라우저 실행 또는 동일 실행 컨텍스트 내부 루프로 묶어 처리한다. 개별 `browser_click` 반복을 기본 전략으로 사용하지 않는다.
 - DOM 구조와 셀렉터 세부는 `reference/goworks-upload.md`를 따른다.
 - 기본값은 계정과목 `야근주말식대`, 지출구분 `개인`이다.
 - 서버 자동 계산 또는 readonly 필드는 직접 입력하지 않고, 자동 반영 결과만 확인한다.
-- 행 추가는 `browser_click` 같은 브라우저 상호작용 도구를 우선 사용하고, `browser_run_code`는 값 일괄 입력용으로 제한한다.
-- Goworks 테이블 입력은 탐색형 시도보다 고정 전략을 따른다: `browser_click`으로 행 추가 -> `browser_run_code` 또는 `page.evaluate`로 텍스트 필드 입력 -> `browser_select_option`으로 select 입력 -> blur 또는 경량 검증.
-- select 필드가 안정적으로 동작하는 것이 확인된 환경에서는 select 설정도 가능한 한 한 번의 브라우저 코드 실행으로 묶어 처리한다. 단, Goworks 이벤트 반영이 불안정하면 `browser_select_option`을 유지한다.
+- Goworks 테이블 입력은 다음 고정 전략을 반드시 따른다: 배치 행 추가 -> 배치 텍스트 입력 -> 배치 select 처리 -> blur 또는 경량 검증.
+- `browser_select_option` 개별 반복은 fallback일 뿐이며, 기본 전략으로 사용하지 않는다.
+- select 필드는 먼저 배치 처리 전략을 시도하고, Goworks 이벤트 반영이 실제로 실패한 경우에만 `browser_select_option` 개별 호출로 내려간다.
 
 ---
 
