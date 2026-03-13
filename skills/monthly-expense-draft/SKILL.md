@@ -84,6 +84,9 @@ metadata:
 - 상신 버튼은 절대 클릭하지 않는다.
 - 상신 후 확인 단계 전에는 임시 zip 복사본을 삭제하지 않는다.
 - 파일 탐색, 리네임, 복사, 압축은 Windows 기준으로만 수행하고 `ls`, `find`, `mv`, `cp` 같은 Unix식 명령을 사용하지 않는다.
+- PowerShell 인코딩이나 quoting 문제를 우회하기 위해 `.ps1` 임시 파일을 생성하거나 실행하는 전략을 기본 또는 fallback으로 사용하지 않는다.
+- file chooser modal이 열려 있는 동안에는 `browser_file_upload` 외 다른 browser tool을 호출하지 않는다.
+- `browser_run_code`는 `page.evaluate(...)` 또는 검증된 Playwright 배치 상호작용이 포함된 경우에만 사용하고, DOM 전역 객체를 직접 참조하는 코드나 단일 필드 입력 용도로 사용하지 않는다.
 
 ## References
 

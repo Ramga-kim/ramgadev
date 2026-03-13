@@ -66,6 +66,7 @@
 - `ls`, `find`, `mv`, `cp` 등 Unix식 파일 명령을 기본 전략으로 사용하지 않는다. 파일 탐색은 Glob 또는 PowerShell, 파일 조작은 PowerShell로만 처리한다.
 - 한글 경로 처리 시 인코딩 주의가 필요하다. 벤더별 허용 패턴은 각 provider 문서를 따른다.
 - Node.js, Python 등 Windows 기본 제공이 아닌 런타임에 의존하지 않는다.
+- PowerShell quoting이나 인코딩 문제를 피하기 위한 `.ps1` 임시 파일 생성/실행을 기본 전략이나 fallback으로 사용하지 않는다.
 - 이미 `yyyyMMdd` 또는 `yyyyMMdd_NN` 형식인 파일은 유지한다.
 - 그 외 파일은 실제 결제 날짜를 읽어 `yyyyMMdd.<ext>` 형식으로 정규화한다.
 - 동일 날짜 복수 파일은 `yyyyMMdd_01.<ext>`, `yyyyMMdd_02.<ext>`처럼 접미사를 붙인다.
@@ -119,6 +120,7 @@
 - `browser_select_option` 개별 반복은 fallback일 뿐이며, 기본 전략으로 사용하지 않는다.
 - select 필드는 먼저 배치 처리 전략을 시도하고, Goworks 이벤트 반영이 실제로 실패한 경우에만 `browser_select_option` 개별 호출로 내려간다.
 - 단일 필드 제목 입력이나 단순 텍스트 입력은 `browser_fill_form` 또는 직접 ref 기반 입력을 우선 사용하고, 복잡한 locator를 새로 구성하는 `browser_run_code`를 기본 전략으로 쓰지 않는다.
+- `browser_run_code` 안에서 DOM 접근이 필요하면 반드시 `page.evaluate(() => ...)` 내부에서 처리한다. `document`나 `window`를 top-level code에서 직접 참조하지 않는다.
 
 ---
 
@@ -137,6 +139,7 @@
 
 - 업로드 검증은 첨부 목록 표시와 `insertFileList`의 `File` 존재 여부로 확인한다.
 - 임시 zip 파일은 상신 후 첨부 확인 전까지 삭제하지 않는다.
+- file chooser modal이 열려 있으면 `browser_file_upload`만 호출한다. modal이 열린 상태에서 `browser_click`, `browser_run_code`, 추가 탐색 tool을 호출하지 않는다.
 
 ---
 
@@ -170,3 +173,4 @@
 - 제목, 합계, 입력 행 수처럼 다음 단계 진행에 필요한 조건이 충족되면 추가 탐색이나 재판단 없이 즉시 다음 tool call을 실행한다.
 - 같은 세션에서 이미 성공한 입력 전략이 있으면 다른 selector 전략이나 구조 탐색을 다시 하지 않는다.
 - 첨부 단계에서는 `business.upload_staging_path`만 사용하며, 다른 경로를 다시 비교하거나 탐색하지 않는다.
+- modal state가 보이면 현재 modal을 먼저 해소하고, 그 modal을 처리하는 tool 외 다른 tool은 사용하지 않는다.

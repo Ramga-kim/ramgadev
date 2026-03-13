@@ -43,6 +43,9 @@
 - using `select.value = '...'` as the primary strategy for Goworks select fields
 - re-inspecting the whole table structure on every retry once the verified pattern is known
 - using repeated per-row `browser_click` or repeated per-row `browser_select_option` as the default strategy
+- creating temporary `.ps1` files as a workaround for quoting or encoding issues
+- calling `browser_click` or `browser_run_code` while a file chooser modal is already open
+- using `browser_run_code` with top-level `document` access instead of wrapping DOM work in `page.evaluate`
 
 ## Attachment behavior
 
@@ -72,3 +75,4 @@
 - treat totals, summary cells, and other readonly or auto-calculated fields as verification targets, not input targets
 - after login redirects or page transitions, reacquire locators instead of trusting older element references
 - for file upload, if the chooser closes after a failed attempt, click the upload button again before retrying `browser_file_upload`
+- while the chooser is open, do not call any browser tool other than `browser_file_upload`
