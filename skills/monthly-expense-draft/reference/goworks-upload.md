@@ -21,6 +21,7 @@
 - set text inputs in a single browser-side evaluation
 - use Playwright `selectOption` for select fields
 - trigger blur on amount inputs so totals recalculate
+- snapshot `ref` values are not DOM attributes; do not turn them into CSS selectors inside `page.evaluate` or `browser_run_code`
 
 ## Attachment behavior
 
@@ -43,3 +44,4 @@
 - on Windows, prefer PowerShell-native file operations over `mv` or `cp` fallbacks for rename/copy steps
 - treat totals, summary cells, and other readonly or auto-calculated fields as verification targets, not input targets
 - after login redirects or page transitions, reacquire locators instead of trusting older element references
+- for file upload, if the chooser closes after a failed attempt, click the upload button again before retrying `browser_file_upload`
