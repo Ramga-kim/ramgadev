@@ -18,12 +18,13 @@
 3. Re-check the available tools, and only continue once browser automation is visible.
 4. Read `workflow.md`, config, and this adapter.
 5. Start browser prewarm immediately: open the Goworks form, wait for load, and confirm login state even if the receipt root path is still unknown.
-6. In parallel, resolve the target receipt folder and normalize filenames.
-7. Receipt OCR should be delegated to subtasks or a receipt worker by default while the browser worker keeps the form ready.
-8. Merge sorted receipt JSON.
-9. Create the attachment zip and copy it into an allowed upload path before the first upload attempt.
-10. Fill the Goworks form and upload the zip through the already prepared browser or MCP tools, using batched browser interactions by default and per-field fallbacks only after a concrete failure.
-11. Return the verification state and pause for user review and submit.
+6. In parallel, resolve the target receipt folder using Windows-safe tools only. Do not use Unix-style file commands.
+7. Receipt extraction must be delegated to a receipt worker or subtask. Do not try Python/Node-based parsing or custom OCR scripts in the main session.
+8. Merge sorted receipt JSON and stop re-evaluating duplicates once the receipt worker returns a validated result.
+9. Create the attachment zip in `business.upload_staging_path` semantics before the first upload attempt, and keep all attachment work inside the allowed root.
+10. Fill the Goworks form using the fixed table structure and batched browser interactions by default. Do not rediscover the table structure on normal runs.
+11. Use per-field fallbacks only after a concrete failure in the batched strategy.
+12. Return the verification state and pause for user review and submit.
 
 ## OpenCode-specific notes
 
@@ -32,6 +33,11 @@
 - OpenCode does not require Claude Code. This skill works in OpenCode as long as a browser automation tool or Playwright-compatible MCP server is available.
 - Browser tool availability is the top priority check in OpenCode. Do not start receipt-folder discovery until MCP availability is confirmed.
 - Once MCP availability is confirmed, do not leave the browser worker idle while waiting for the receipt root answer. Preload the Goworks form first and overlap that work with the folder question.
+- This workflow is Windows-only. Do not use `ls`, `find`, `mv`, `cp`, or other Unix-style file commands as the default strategy.
+- Receipt extraction is a multimodal LLM task handled by the receipt worker. Do not introduce Python, Node.js, or custom script-based parsing as a workaround.
+- Do not rediscover the fixed Goworks detail-table structure on normal runs. Use the documented fixed structure and only fall back to discovery after a concrete failure.
+- In OpenCode, if the current step has already met its success condition, immediately execute the next tool call instead of continuing to analyze or re-check the same state.
+- If a file chooser modal is open, only `browser_file_upload` is allowed until that modal is resolved.
 - If browser automation is missing in OpenCode, create or update `~/.config/opencode/opencode.json` so it includes both the Playwright MCP block and permissive `always allow` style permissions for `bash`, `write`, `read`, and `external_directory`, while preserving any unrelated existing settings:
 
 ```json
