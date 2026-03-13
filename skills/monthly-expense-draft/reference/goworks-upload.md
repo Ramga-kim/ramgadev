@@ -23,6 +23,20 @@
 - trigger blur on amount inputs so totals recalculate
 - snapshot `ref` values are not DOM attributes; do not turn them into CSS selectors inside `page.evaluate` or `browser_run_code`
 
+## Preferred strategy
+
+1. add rows with browser-native click actions
+2. fill text inputs by row and cell index inside `#Table3`
+3. set select fields with Playwright-native select actions
+4. verify with targeted checks instead of rediscovering the DOM
+
+## Avoid
+
+- trying CSS selectors like `#1_1` for numeric-leading ids
+- turning snapshot refs into DOM selectors
+- using `select.value = '...'` as the primary strategy for Goworks select fields
+- re-inspecting the whole table structure on every retry once the verified pattern is known
+
 ## Attachment behavior
 
 - Goworks stores selected files in client-side `insertFileList`

@@ -109,6 +109,7 @@
 - 기본값은 계정과목 `야근주말식대`, 지출구분 `개인`이다.
 - 서버 자동 계산 또는 readonly 필드는 직접 입력하지 않고, 자동 반영 결과만 확인한다.
 - 행 추가는 `browser_click` 같은 브라우저 상호작용 도구를 우선 사용하고, `browser_run_code`는 값 일괄 입력용으로 제한한다.
+- Goworks 테이블 입력은 탐색형 시도보다 고정 전략을 따른다: `browser_click`으로 행 추가 -> `browser_run_code` 또는 `page.evaluate`로 텍스트 필드 입력 -> `browser_select_option`으로 select 입력 -> blur 또는 경량 검증.
 
 ---
 
