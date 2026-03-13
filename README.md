@@ -20,15 +20,7 @@ npm config set //npm.pkg.github.com/:_authToken <PAT>
 ### 2. 스킬 설치
 
 ```bash
-npx skills add Ramga-kim/ramgadev --agent opencode --yes -g
-```
-
-필요하면 다른 에이전트에서도 같은 저장소 주소를 사용할 수 있다.
-
-```bash
-npx skills add Ramga-kim/ramgadev --agent claude-code --yes -g
-npx skills add Ramga-kim/ramgadev --agent gemini-cli --yes -g
-npx skills add Ramga-kim/ramgadev --agent gpt-codex --yes -g
+npx skills add Ramga-kim/ramgadev -g --yes -a claude-code -a codex -a gemini-cli -a opencode
 ```
 
 ## Repository layout
