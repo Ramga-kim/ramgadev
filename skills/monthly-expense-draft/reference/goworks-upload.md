@@ -40,3 +40,6 @@
 
 - copy the zip into an allowed upload path before the first upload attempt instead of failing once and retrying
 - avoid full-page snapshots after every step; reserve them for login uncertainty, DOM discovery, or final user-facing confirmation
+- on Windows, prefer PowerShell-native file operations over `mv` or `cp` fallbacks for rename/copy steps
+- treat totals, summary cells, and other readonly or auto-calculated fields as verification targets, not input targets
+- after login redirects or page transitions, reacquire locators instead of trusting older element references
