@@ -162,3 +162,6 @@
 - 폼 확인은 전체 스냅샷 반복보다 경량 검증을 우선 사용한다.
 - 로그인 직후나 페이지 전환 직후에는 stale ref를 가정하고, 이전 element ref 재사용보다 새 locator 또는 새 확인 절차를 우선 사용한다.
 - snapshot의 `ref` 값은 Playwright 도구용 참조일 뿐이며, `browser_run_code` 내부에서 DOM selector로 사용하지 않는다.
+- 제목, 합계, 입력 행 수처럼 다음 단계 진행에 필요한 조건이 충족되면 추가 탐색이나 재판단 없이 즉시 다음 tool call을 실행한다.
+- 같은 세션에서 이미 성공한 입력 전략이 있으면 다른 selector 전략이나 구조 탐색을 다시 하지 않는다.
+- 첨부 단계에서는 `business.upload_staging_path`만 사용하며, 다른 경로를 다시 비교하거나 탐색하지 않는다.
