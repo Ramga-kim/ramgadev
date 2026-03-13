@@ -92,6 +92,7 @@
 - copy the zip into an allowed upload path before the first upload attempt instead of failing once and retrying
 - treat the allowed upload path as a hard precondition before opening the file chooser
 - if `business.upload_staging_path` is set, use it; otherwise choose a staging path only inside the current allowed root instead of `%TEMP%` or `Downloads`
+- do not create alternate workspace copies such as `Desktop\\opencode` when the file is already inside an allowed root path
 - avoid full-page snapshots after every step; reserve them for login uncertainty, DOM discovery, or final user-facing confirmation
 - on Windows, prefer PowerShell-native file operations over `mv` or `cp` fallbacks for rename/copy steps
 - treat totals, summary cells, and other readonly or auto-calculated fields as verification targets, not input targets
