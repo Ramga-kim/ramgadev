@@ -42,8 +42,7 @@ nada-skills/
       |- README.md
       |- workflow.md
       |- skill-config.example.yaml
-      `- reference/
-         `- goworks-upload.md
+      `- goworks-upload.md
 ```
 
 ## Skill catalog
@@ -63,13 +62,13 @@ nada-skills/
 - 각 스킬은 `skills/<skill-name>/SKILL.md`에 둔다
 - 스킬 이름은 kebab-case를 사용하고 폴더명과 동일하게 맞춘다
 - 사람용 설명은 `skills/<skill-name>/README.md`에 둔다
-- 길어지는 도메인 규칙이나 셀렉터 메모는 `skills/<skill-name>/reference/`로 분리한다
+- 길어지는 도메인 규칙이나 셀렉터 메모는 필요 시 스킬 폴더 안의 별도 markdown 파일로 분리한다
 - 저장소는 단순하게 유지하고, 공용 문서는 스킬이 늘어날 때만 추가한다
 
 ## 새 스킬 추가
 
 1. `skills/<skill-name>/SKILL.md` 생성
 2. `skills/<skill-name>/README.md` 추가
-3. 긴 참고 내용은 `skills/<skill-name>/reference/`에 정리
+3. 긴 참고 내용은 스킬 폴더 안의 별도 markdown 파일로 정리
 4. 이 `README.md`의 스킬 목록에 등록
 5. 계정, PAT, 개인 경로 같은 값은 커밋하지 않기
