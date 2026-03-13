@@ -35,6 +35,7 @@
 3. set select fields in one batched browser action when possible
 4. verify with targeted checks instead of rediscovering the DOM
 5. use per-field browser actions only as fallback after the batched strategy fails
+6. if the primary add-row locator misses, switch within the same batch execution to a verified fallback button search instead of leaving batched mode
 
 ## Avoid
 

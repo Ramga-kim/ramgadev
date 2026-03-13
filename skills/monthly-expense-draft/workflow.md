@@ -106,6 +106,7 @@
 - 저장된 계정 정보는 `skill-config.yaml`의 `goworks.email`, `goworks.password`에서만 읽는다.
 - 값이 비어 있거나 저장을 원하지 않으면 수동 로그인으로 진행한다.
 - SSO 환경에서는 navigate 직후 바로 클릭하지 말고, 현재 URL 또는 화면 상태를 먼저 확인한 뒤 로그인 클릭 필요 여부를 판단한다.
+- navigate 직후 최종 URL이 이미 Goworks 도메인으로 돌아왔거나 홈 화면 요소가 보이면 로그인 클릭을 시도하지 않는다.
 
 ### 제목 규칙
 
@@ -114,6 +115,7 @@
 
 - 행 추가는 반드시 한 번의 배치 브라우저 실행 또는 동일 실행 컨텍스트 내부 루프로 묶어 처리한다. 개별 `browser_click` 반복을 기본 전략으로 사용하지 않는다.
 - DOM 구조와 셀렉터 세부는 `reference/goworks-upload.md`를 따른다.
+- 행 추가 버튼의 Playwright locator가 바로 잡히지 않으면, 같은 배치 실행 안에서 검증된 버튼 탐색 fallback (`button`, `input[type="button"]`, known onclick 패턴)으로 전환한다.
 - 기본값은 계정과목 `야근주말식대`, 지출구분 `개인`이다.
 - 서버 자동 계산 또는 readonly 필드는 직접 입력하지 않고, 자동 반영 결과만 확인한다.
 - Goworks 테이블 입력은 다음 고정 전략을 반드시 따른다: 배치 행 추가 -> 배치 텍스트 입력 -> 배치 select 처리 -> blur 또는 경량 검증.
