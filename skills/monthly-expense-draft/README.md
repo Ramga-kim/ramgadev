@@ -11,7 +11,8 @@ Goworks 월간 경비청구서 기안을 자동화하는 workflow skill.
 
 ## Receipt extraction rule
 
-- 영수증 추출은 반드시 `receipt_worker`가 맡고, 메인 세션은 JSON 결과만 사용한다
+- 영수증 추출은 반드시 파일당 1개의 `receipt_worker`가 맡고, 메인 세션은 JSON 결과만 병합해 사용한다
+- 폴더 전체를 단일 서브에이전트 하나가 순차 처리하는 방식은 허용하지 않는다
 - 추출은 반드시 멀티모달 LLM 기반으로 수행하며 Python, Node.js, ImageMagick, Ghostscript 같은 별도 변환/파싱 탐색은 해서는 안 된다
 - 상호명은 반드시 원문 기준으로 보수 추출하고, 중복 영수증은 반드시 승인번호 우선 규칙으로 제거한다
 

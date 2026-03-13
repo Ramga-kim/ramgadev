@@ -80,7 +80,8 @@ DOM/업로드 세부는 `goworks-upload.md`를 참조한다.
 
 ### 추출 항목
 
-- 영수증 이미지 읽기와 PDF 추출은 메인 세션이 직접 처리하지 않고 `receipt_worker` 역할의 서브에이전트에 위임하는 것을 기본으로 한다.
+- 영수증 이미지 읽기와 PDF 추출은 메인 세션이 직접 처리하지 않는다.
+- 영수증 파일마다 별도 `receipt_worker` 서브에이전트 1개를 반드시 fan-out한다. 폴더 전체를 단일 worker 하나가 순차 처리하는 방식을 기본 또는 fallback으로 사용해서는 안 된다.
 - 메인 세션은 OCR 결과 JSON만 받아 이후 폼 입력을 진행한다.
 - `receipt_worker`는 이 스킬을 다시 로드하거나 전체 경비청구 workflow를 재실행해서는 안 된다. 자신의 역할은 영수증 추출과 첨부 산출물 준비로만 제한한다.
 - `receipt_worker`는 멀티모달 LLM으로 이미지/PDF 내용을 읽어 추출해야 한다. Python, Node.js, ImageMagick, Ghostscript, 커스텀 OCR 스크립트 탐색을 시도해서는 안 된다.
