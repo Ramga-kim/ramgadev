@@ -7,7 +7,6 @@ metadata:
   category: finance-ops
   requires_browser_automation: "true"
   requires_receipt_images: "true"
-disable-model-invocation: true
 ---
 
 # Goworks 경비청구서 기안

@@ -3,8 +3,7 @@
 ## Discovery and invocation
 
 - Install under `.claude/skills/monthly-expense-draft/`.
-- Prefer explicit invocation with `/monthly-expense-draft`.
-- `disable-model-invocation: true` in `SKILL.md` keeps this side-effectful workflow manual by default.
+- Explicit invocation with `/monthly-expense-draft` is still supported, but automatic skill invocation should also be allowed.
 - If Playwright browser tools are missing, use `/plugin` to install the official `playwright` plugin in Claude Code.
 - After plugin install or update, run `/reload-plugins` so the current session can use the new browser tools without restarting Claude Code.
 
