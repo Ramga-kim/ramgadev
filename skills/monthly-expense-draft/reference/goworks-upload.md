@@ -15,6 +15,11 @@
   - `_5`: account item select
   - `_8`: expense type select
 
+## Known select values
+
+- `야근주말식대`: `81100`
+- `개인`: environment-specific label or value should be verified once and then reused
+
 ## Bulk fill pattern
 
 - add rows first in one batched browser action
@@ -61,6 +66,7 @@
 
 - copy the zip into an allowed upload path before the first upload attempt instead of failing once and retrying
 - treat the allowed upload path as a hard precondition before opening the file chooser
+- use `business.upload_staging_path` as the default allowed-root staging location instead of `%TEMP%` or `Downloads`
 - avoid full-page snapshots after every step; reserve them for login uncertainty, DOM discovery, or final user-facing confirmation
 - on Windows, prefer PowerShell-native file operations over `mv` or `cp` fallbacks for rename/copy steps
 - treat totals, summary cells, and other readonly or auto-calculated fields as verification targets, not input targets

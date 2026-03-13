@@ -35,11 +35,11 @@ Write -> .ps1 저장 -> powershell -File script.ps1
 bash heredoc -> powershell -Command "$var = ..."
 ```
 
-### Prefer
+### MUST
 
-1. 인라인 `powershell -NoProfile -Command` + `chcp 65001` with a single-quoted outer command when bash interpolation could touch `$`
-2. 필요 시 `-EncodedCommand` 또는 BOM 재인코딩 후 실행
-3. 한글 경로는 환경변수로 전달하고 PowerShell 내부에서 `$env:`로 참조
+1. bash 안에서 PowerShell에 `$`가 들어가면 single-quoted outer command를 사용하거나 환경변수로 전달한 뒤 `$env:`로 참조해야 한다.
+2. 필요 시 `-EncodedCommand` 또는 BOM 재인코딩 후 실행한다.
+3. 한글 경로는 환경변수로 전달하고 PowerShell 내부에서 `$env:`로 참조한다.
 
 예시:
 
@@ -47,7 +47,7 @@ bash heredoc -> powershell -Command "$var = ..."
 powershell -NoProfile -Command "chcp 65001 | Out-Null; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; <command>"
 ```
 
-- `$` 변수는 bash 치환을 피하도록 이스케이프하거나 인용부호를 주의한다.
+- `$` 변수를 bash 바깥에서 직접 이스케이프하려고 시도하지 말고, 위 패턴만 사용한다.
 - Node.js, Python 등 추가 런타임이 설치되어 있다고 가정하지 않는다.
 - Windows 파일 작업은 기본 내장 PowerShell만으로 해결하는 것을 우선한다.
 

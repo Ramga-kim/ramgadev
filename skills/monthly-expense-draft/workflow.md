@@ -68,6 +68,7 @@
 - 그 외 파일은 실제 결제 날짜를 읽어 `yyyyMMdd.<ext>` 형식으로 정규화한다.
 - 동일 날짜 복수 파일은 `yyyyMMdd_01.<ext>`, `yyyyMMdd_02.<ext>`처럼 접미사를 붙인다.
 - PowerShell 인라인 명령에서 bash와 `$` 이스케이프 충돌이 날 수 있으므로, provider 문서의 검증된 quoting 패턴을 우선 사용한다.
+- bash 안에서 PowerShell을 호출할 때 `$`가 들어가면 single-quoted outer command 또는 `$env:` 전달 패턴을 반드시 사용한다.
 - PDF 하나 안에 여러 영수증이 있을 수 있으므로, 파일 수와 영수증 건수를 같다고 가정하지 않는다.
 
 ---
@@ -123,6 +124,7 @@
 - 입력이 이미 PDF면 원본 PDF를 그대로 사용한다.
 - 최종 첨부 대상은 PDF 파일들만 포함한 zip이다.
 - 파일명과 생성 명령은 `skill-config.yaml` 기본값 또는 로컬 설정을 따른다.
+- `skill-config.yaml`의 `business.upload_staging_path`를 allowed root 기본값으로 사용한다.
 - 원본 zip은 대상 폴더에 보존한다.
 - 업로드 전에 Playwright 허용 경로 안의 임시 경로를 먼저 준비하고, 첫 업로드부터 그 경로만 사용한다.
 - 실패 후 다른 경로를 다시 시도하지 말고, 허용 경로 여부를 먼저 확인한다.

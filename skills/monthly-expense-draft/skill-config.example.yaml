@@ -9,6 +9,7 @@ business:
   target_month_offset: -1
   title_template: '[경비청구서] {month}월 개인경비'
   attachment_name_template: '{month}월_경비청구서_{drafter_name}.zip'
+  upload_staging_path: 'C:\Users\<USER>\Desktop\tmp'
 
 goworks:
   form_url: 'https://www.goworks.co.kr/Approval/NewForm?templateid=2679'
