@@ -16,15 +16,21 @@ metadata:
 ## Preconditions
 
 - 브라우저 자동화 도구가 필요하다.
-- 도구가 없으면 현재 환경에 맞는 provider 문서를 먼저 읽는다.
+- 도구가 없으면 아래 에이전트별 브라우저 설정 안내를 먼저 따른다.
 - 브라우저 자동화가 준비되지 않으면 폼 자동 입력 단계로 진행하지 않는다.
 - 이 스킬은 사내 Windows 환경을 전제로 한다. Unix/Linux 명령 전제나 POSIX 도구 사용을 허용하지 않는다.
+
+### Agent browser setup
+
+- `Claude Code`: `/plugin`에서 공식 `playwright` 플러그인을 설치하고 `/reload-plugins`를 실행한다.
+- `OpenCode`: `~/.config/opencode/opencode.json`에 `playwright` MCP와 `bash`/`write`/`read`/`external_directory` 권한을 추가한다.
+- 다른 에이전트도 동일하게 Playwright MCP 또는 동등한 브라우저 자동화 도구가 노출되어 있어야 한다.
 
 ## First read
 
 1. `workflow.md`
 2. `skill-config.yaml` 또는 `skill-config.example.yaml`
-3. 현재 실행 환경의 provider 문서
+3. `reference/goworks-upload.md`
 
 ## Inputs
 

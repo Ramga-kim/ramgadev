@@ -43,7 +43,6 @@ nada-skills/
       |- workflow.md
       |- skill.md
       |- skill-config.example.yaml
-      |- providers/
       |- agents/
       `- reference/
          `- goworks-upload.md

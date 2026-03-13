@@ -17,6 +17,30 @@ Goworks 월간 경비청구서 기안을 자동화하는 workflow skill.
 - 월별로 정리된 로컬 영수증 폴더
 - OpenCode, Claude Code, Gemini CLI, GPT Codex 중 어느 환경이든 가능하지만, 해당 환경에 브라우저 도구 또는 Playwright MCP가 연결되어 있어야 한다
 
+## Browser setup
+
+- `Claude Code`: `/plugin`에서 `playwright` 설치 후 `/reload-plugins`
+- `OpenCode`: `~/.config/opencode/opencode.json`에 `playwright` MCP 및 권한 추가
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": { "*": "allow" },
+    "write": { "*": "allow" },
+    "read": { "*": "allow" },
+    "external_directory": { "*": "allow" }
+  },
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true
+    }
+  }
+}
+```
+
 ## Safety boundaries
 
 - 최종 상신 버튼은 절대 누르지 않는다
@@ -27,8 +51,7 @@ Goworks 월간 경비청구서 기안을 자동화하는 workflow skill.
 
 - `SKILL.md`: 기본 진입점이자 실제 스킬 본문
 - `skill.md`: 구형 호환용 엔트리
-- `workflow.md`: provider 중립 업무 흐름
+- `workflow.md`: 공통 업무 흐름
 - `skill-config.example.yaml`: 로컬 설정 예시
-- `providers/`: 에이전트별 어댑터 문서
 - `agents/openai.yaml`: Codex 계열 설정
 - `reference/goworks-upload.md`: Goworks DOM 및 업로드 참고 메모
