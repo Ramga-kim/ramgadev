@@ -5,6 +5,8 @@
 - Install under `.claude/skills/monthly-expense-draft/`.
 - Prefer explicit invocation with `/monthly-expense-draft`.
 - `disable-model-invocation: true` in `SKILL.md` keeps this side-effectful workflow manual by default.
+- If Playwright browser tools are missing, use `/plugin` to install the official `playwright` plugin in Claude Code.
+- After plugin install or update, run `/reload-plugins` so the current session can use the new browser tools without restarting Claude Code.
 
 ## Capability mapping
 
@@ -27,4 +29,4 @@
 - Treat Opus/Sonnet selection as an optimization, not a requirement.
 - Do not hardcode Claude-only tool IDs in the shared workflow.
 - If Playwright is exposed through a plugin or MCP server, use the available browser tool names in the current environment.
-- If browser automation is missing, stop and tell the user exactly which plugin or MCP setup is required.
+- If browser automation is missing, first guide the user to `/plugin` -> `playwright`, then `/reload-plugins`, before falling back to broader MCP setup guidance.
