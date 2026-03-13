@@ -25,9 +25,9 @@
 
 ## Preferred strategy
 
-1. add rows with browser-native click actions
+1. add rows in one batched browser action when the environment is stable; otherwise use browser-native clicks
 2. fill text inputs by row and cell index inside `#Table3`
-3. set select fields with Playwright-native select actions
+3. set select fields with batched browser logic only if Goworks change handling is confirmed; otherwise use Playwright-native select actions
 4. verify with targeted checks instead of rediscovering the DOM
 
 ## Avoid
@@ -58,6 +58,7 @@
 ## Efficiency notes
 
 - copy the zip into an allowed upload path before the first upload attempt instead of failing once and retrying
+- treat the allowed upload path as a hard precondition before opening the file chooser
 - avoid full-page snapshots after every step; reserve them for login uncertainty, DOM discovery, or final user-facing confirmation
 - on Windows, prefer PowerShell-native file operations over `mv` or `cp` fallbacks for rename/copy steps
 - treat totals, summary cells, and other readonly or auto-calculated fields as verification targets, not input targets

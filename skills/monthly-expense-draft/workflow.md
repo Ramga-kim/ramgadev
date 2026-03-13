@@ -107,12 +107,13 @@
 - 기본값: `[경비청구서] {N}월 개인경비` (예: `[경비청구서] 2월 개인경비`)
 - `skill-config.yaml`의 `business.title_template`가 있으면 그 값을 우선 사용
 
-- 행 추가와 값 입력은 `browser_run_code` 기반 일괄 입력을 우선 사용한다.
+- 행 추가는 가능하면 한 번의 `browser_run_code` 또는 브라우저 네이티브 루프로 묶어 처리하고, 값 입력도 일괄 처리한다.
 - DOM 구조와 셀렉터 세부는 `reference/goworks-upload.md`를 따른다.
 - 기본값은 계정과목 `야근주말식대`, 지출구분 `개인`이다.
 - 서버 자동 계산 또는 readonly 필드는 직접 입력하지 않고, 자동 반영 결과만 확인한다.
 - 행 추가는 `browser_click` 같은 브라우저 상호작용 도구를 우선 사용하고, `browser_run_code`는 값 일괄 입력용으로 제한한다.
 - Goworks 테이블 입력은 탐색형 시도보다 고정 전략을 따른다: `browser_click`으로 행 추가 -> `browser_run_code` 또는 `page.evaluate`로 텍스트 필드 입력 -> `browser_select_option`으로 select 입력 -> blur 또는 경량 검증.
+- select 필드가 안정적으로 동작하는 것이 확인된 환경에서는 select 설정도 가능한 한 한 번의 브라우저 코드 실행으로 묶어 처리한다. 단, Goworks 이벤트 반영이 불안정하면 `browser_select_option`을 유지한다.
 
 ---
 
@@ -125,6 +126,7 @@
 - 원본 zip은 대상 폴더에 보존한다.
 - 업로드 전에 Playwright 허용 경로 안의 임시 경로를 먼저 준비하고, 첫 업로드부터 그 경로만 사용한다.
 - 실패 후 다른 경로를 다시 시도하지 말고, 허용 경로 여부를 먼저 확인한다.
+- zip 생성 직후 allowed root 내부 경로로 복사 또는 생성해서, 업로드 단계에서 경로 전환이 발생하지 않게 한다.
 
 - 업로드 검증은 첨부 목록 표시와 `insertFileList`의 `File` 존재 여부로 확인한다.
 - 임시 zip 파일은 상신 후 첨부 확인 전까지 삭제하지 않는다.
