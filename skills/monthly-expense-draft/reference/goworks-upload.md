@@ -34,3 +34,9 @@
 - attachment filename is visible in the form
 - attachment size is visible in the form
 - `insertFileList` contains `File` instances with `hasFile: true`
+- prefer targeted field checks or `page.evaluate` over full-page snapshots when validating filled rows or attachment state
+
+## Efficiency notes
+
+- copy the zip into an allowed upload path before the first upload attempt instead of failing once and retrying
+- avoid full-page snapshots after every step; reserve them for login uncertainty, DOM discovery, or final user-facing confirmation

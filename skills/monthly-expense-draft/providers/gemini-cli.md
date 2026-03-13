@@ -18,8 +18,8 @@
 2. Resolve the target month and normalize filenames.
 3. If Gemini subagents or remote agents are enabled, parallelize receipt OCR and browser prewarm; otherwise run serially.
 4. Build the sorted JSON result.
-5. Create the zip locally.
-6. Use the configured browser automation or Playwright MCP server to fill the form and upload the zip.
+5. Create the zip locally and pre-copy it into an allowed upload path.
+6. Use the configured browser automation or Playwright MCP server to fill the form and upload the zip, preferring targeted validation over repeated full-page snapshots.
 7. Return upload verification plus final manual-submit instructions.
 
 ## Gemini-specific notes
