@@ -114,7 +114,8 @@
 - `skill-config.yaml`의 `business.title_template`가 있으면 그 값을 우선 사용
 
 - 행 추가는 반드시 한 번의 배치 브라우저 실행 또는 동일 실행 컨텍스트 내부 루프로 묶어 처리한다. 개별 `browser_click` 반복을 기본 전략으로 사용하지 않는다.
-- DOM 구조와 셀렉터 세부는 `reference/goworks-upload.md`를 따른다.
+- 이 전자결재 양식의 상세 테이블 구조는 고정이며, 컬럼 의미를 매 실행마다 다시 탐색하지 않는다.
+- DOM 구조와 고정 셀 인덱스는 `reference/goworks-upload.md`를 그대로 따른다.
 - 행 추가 버튼의 Playwright locator가 바로 잡히지 않으면, 같은 배치 실행 안에서 검증된 버튼 탐색 fallback (`button`, `input[type="button"]`, known onclick 패턴)으로 전환한다.
 - 기본값은 계정과목 `야근주말식대`, 지출구분 `개인`이다.
 - 서버 자동 계산 또는 readonly 필드는 직접 입력하지 않고, 자동 반영 결과만 확인한다.
@@ -123,6 +124,7 @@
 - select 필드는 먼저 배치 처리 전략을 시도하고, Goworks 이벤트 반영이 실제로 실패한 경우에만 `browser_select_option` 개별 호출로 내려간다.
 - 단일 필드 제목 입력이나 단순 텍스트 입력은 `browser_fill_form` 또는 직접 ref 기반 입력을 우선 사용하고, 복잡한 locator를 새로 구성하는 `browser_run_code`를 기본 전략으로 쓰지 않는다.
 - `browser_run_code` 안에서 DOM 접근이 필요하면 반드시 `page.evaluate(() => ...)` 내부에서 처리한다. `document`나 `window`를 top-level code에서 직접 참조하지 않는다.
+- 테이블 구조 재탐색은 기본 단계가 아니며, 고정 구조 기반 입력이 실제로 실패했을 때만 예외적으로 허용한다.
 
 ---
 

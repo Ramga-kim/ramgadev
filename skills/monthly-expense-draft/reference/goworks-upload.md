@@ -15,6 +15,23 @@
   - `_5`: account item select
   - `_8`: expense type select
 
+## Fixed table structure
+
+- this expense form uses a fixed detail table structure; do not rediscover column meaning on every run
+- header row: index `0`
+- data rows: index `1..N`
+- summary row: last row
+- data row cell order is fixed:
+  - `cells[0]`: checkbox
+  - `cells[1]`: date input
+  - `cells[2]`: amount input
+  - `cells[3]`: vendor input
+  - `cells[4]`: business content input
+  - `cells[5]`: usage select
+  - `cells[6]`: project input
+  - `cells[7]`: division select
+  - `cells[8]`: expense type select
+
 ## Known select values
 
 - `야근주말식대`: `81100`
@@ -36,6 +53,7 @@
 4. verify with targeted checks instead of rediscovering the DOM
 5. use per-field browser actions only as fallback after the batched strategy fails
 6. if the primary add-row locator misses, switch within the same batch execution to a verified fallback button search instead of leaving batched mode
+7. treat table structure discovery as an exception-only fallback, not a normal step
 
 ## Avoid
 
@@ -43,6 +61,7 @@
 - turning snapshot refs into DOM selectors
 - using `select.value = '...'` as the primary strategy for Goworks select fields
 - re-inspecting the whole table structure on every retry once the verified pattern is known
+- rediscovering the fixed column structure on normal runs
 - using repeated per-row `browser_click` or repeated per-row `browser_select_option` as the default strategy
 - creating temporary `.ps1` files as a workaround for quoting or encoding issues
 - calling `browser_click` or `browser_run_code` while a file chooser modal is already open
