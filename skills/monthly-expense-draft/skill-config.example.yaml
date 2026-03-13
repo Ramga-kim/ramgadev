@@ -16,29 +16,3 @@ goworks:
   manual_login: true
   email: ''
   password: ''
-
-execution:
-  prefer_parallel_ocr: true
-  prefer_parallel_browser_prewarm: true
-  roles:
-    orchestrator: 'high-reasoning'
-    receipt_worker: 'fast-balanced'
-    browser_worker: 'tool-stable'
-
-providers:
-  claude-code:
-    orchestrator_model: ''
-    receipt_worker_model: ''
-    browser_worker_model: ''
-  gemini-cli:
-    orchestrator_model: ''
-    receipt_worker_model: ''
-    browser_worker_model: ''
-  opencode:
-    orchestrator_model: ''
-    receipt_worker_model: ''
-    browser_worker_model: ''
-  gpt-codex:
-    orchestrator_model: ''
-    receipt_worker_model: ''
-    browser_worker_model: ''
