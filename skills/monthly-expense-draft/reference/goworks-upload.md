@@ -51,7 +51,8 @@
 
 - final attachment artifact is a zip file that contains receipt PDFs
 - image receipts should be converted to per-receipt PDFs before packaging
-- source PDFs stay as PDFs; a single PDF may represent one or multiple receipts at extraction time
+- source PDFs stay as PDFs, but their final attachment filenames must still be normalized to `yyyyMMdd.pdf` or `yyyyMMdd_NN.pdf`
+- raw source filenames must not remain inside the final zip
 - Goworks stores selected files in client-side `insertFileList`
 - actual upload occurs only after the approval submit flow calls `PerformUpload`
 - absence of an immediate network upload request after file selection is normal
@@ -64,6 +65,7 @@
 - `insertFileList` contains `File` instances with `hasFile: true`
 - typical structure is `{ file: File, ... }`, so validation should read `item.file.name` and `item.file.size`
 - prefer targeted field checks or `page.evaluate` over full-page snapshots when validating filled rows or attachment state
+- verify that the zip contents are normalized to `yyyyMMdd.pdf` or `yyyyMMdd_NN.pdf` before upload
 
 ## Efficiency notes
 

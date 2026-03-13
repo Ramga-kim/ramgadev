@@ -127,8 +127,8 @@
 ## 5. zip 첨부
 
 - 입력이 이미지면 영수증 1건당 PDF 1개로 변환한다.
-- 입력이 이미 PDF면 원본 PDF를 그대로 사용한다.
-- 최종 첨부 대상은 PDF 파일들만 포함한 zip이다.
+- 입력이 이미 PDF여도 최종 첨부용 PDF 파일명은 반드시 날짜 기준으로 정규화한다.
+- 최종 첨부 대상은 `yyyyMMdd.pdf` 또는 `yyyyMMdd_NN.pdf` 형식으로 정규화된 PDF 파일들만 포함한 zip이다.
 - 파일명과 생성 명령은 `skill-config.yaml` 기본값 또는 로컬 설정을 따른다.
 - `skill-config.yaml`의 `business.upload_staging_path`를 allowed root 기본값으로 사용한다.
 - 원본 zip은 대상 폴더에 보존한다.
@@ -136,10 +136,12 @@
 - 실패 후 다른 경로를 다시 시도하지 말고, 허용 경로 여부를 먼저 확인한다.
 - zip 생성 직후 allowed root 내부 경로로 복사 또는 생성해서, 업로드 단계에서 경로 전환이 발생하지 않게 한다.
 - staging 경로는 디렉토리 자체가 아니라 파일 경로까지 포함한 full path로 다루며, staging 폴더 자체를 삭제 대상으로 취급하지 않는다.
+- 원본 PDF 이름(`afsbb.pdf` 같은 이름)을 zip 내부에 그대로 남기면 안 된다. 최종 첨부 산출물 이름은 모두 날짜 기준으로 재명명되어야 한다.
 
 - 업로드 검증은 첨부 목록 표시와 `insertFileList`의 `File` 존재 여부로 확인한다.
 - 임시 zip 파일은 상신 후 첨부 확인 전까지 삭제하지 않는다.
 - file chooser modal이 열려 있으면 `browser_file_upload`만 호출한다. modal이 열린 상태에서 `browser_click`, `browser_run_code`, 추가 탐색 tool을 호출하지 않는다.
+- 필요하면 zip 생성 직후 압축을 풀지 않고도 zip 내부 파일명 목록을 확인해서 `yyyyMMdd[_NN].pdf` 규칙을 검증한다.
 
 ---
 
